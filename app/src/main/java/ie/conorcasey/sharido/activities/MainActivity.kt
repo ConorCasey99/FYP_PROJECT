@@ -12,12 +12,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import ie.conorcasey.sharido.R
 import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
 
   private lateinit var appBarConfiguration: AppBarConfiguration
+  private  lateinit var Auth: FirebaseAuth
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -53,6 +55,8 @@ class MainActivity : AppCompatActivity() {
       .addOnCompleteListener { startActivity<LoginActivity>() }
     finish()
   }
+
+
 
   override fun onSupportNavigateUp(): Boolean {
     val navController = findNavController(R.id.nav_host_fragment)

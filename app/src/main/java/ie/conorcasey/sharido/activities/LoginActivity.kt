@@ -19,6 +19,7 @@ import org.jetbrains.anko.startActivity
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var app: MainApp
+    lateinit var auth: FirebaseAuth
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +38,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             startActivity<MainActivity>()
         }
         else
-        // not signed in
+        // if not signed in
             createSignInIntent()
     }
 
@@ -62,7 +63,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
                 .setIsSmartLockEnabled(false,true) // true,true for Smart Lock
-                //.setLogo(R.drawable.login_homer)
                 .setTheme(R.style.FirebaseLoginTheme)
                 .setAuthMethodPickerLayout(customLayout)
                 .build(),

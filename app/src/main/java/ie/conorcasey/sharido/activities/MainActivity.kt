@@ -2,8 +2,6 @@ package ie.conorcasey.sharido.activities
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -20,10 +18,7 @@ import ie.conorcasey.sharido.main.MainApp
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import org.jetbrains.anko.startActivity
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
-
-  val button: Button = findViewById<Button>(R.id.sign_out) as Button
-
+class MainActivity : AppCompatActivity() {
 
   private lateinit var appBarConfiguration: AppBarConfiguration
   private lateinit var Auth: FirebaseAuth
@@ -37,12 +32,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     setSupportActionBar(toolbar)
     app = application as MainApp
 
-/*
-    val fab: FloatingActionButton = findViewById(R.id.fab)
-    fab.setOnClickListener { view ->
-      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-          .setAction("Action", null).show()
-    }*/
     val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
     val navView: NavigationView = findViewById(R.id.nav_view)
     val navController = findNavController(R.id.nav_host_fragment)
@@ -58,16 +47,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     //sign_out.setOnClickListener(this)
   }
 
-  override fun onClick(v: View) {
-    when (v.id) {
-      R.id.sign_out -> {
-        signOut()
-      }
-      else -> {
-        // else condition
-      }
-    }
-  }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
     // Inflate the menu; this adds items to the action bar if it is present.
@@ -75,6 +54,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     return true
   }
 
+  /*
+  override fun onNavigationItemSelected(item: MenuItem): Boolean {
+
+    when (item.itemId) {
+
+      R.id.sign_out ->
+        signOut()
+
+      else -> toast("You Selected Something Else")
+    }
+    //drawerLayout.closeDrawer(GravityCompat.START)
+    return true
+  }
+*/
 
 
   private fun signOut() {

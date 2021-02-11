@@ -2,6 +2,7 @@ package ie.conorcasey.sharido.activities
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -23,7 +24,6 @@ class MainActivity : AppCompatActivity() {
   private lateinit var appBarConfiguration: AppBarConfiguration
   private lateinit var Auth: FirebaseAuth
   lateinit var app: MainApp
-  val signout = R.id.sign_out
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
     val navView: NavigationView = findViewById(R.id.nav_view)
     val navController = findNavController(R.id.nav_host_fragment)
-    //val nav_header = findViewById(R.id.nav_header)
+    // val nav_header = findViewById(R.id.nav_header)
     // Passing each menu ID as a set of Ids because each
     // menu should be considered as top level destinations.
     appBarConfiguration = AppBarConfiguration(setOf(
@@ -47,28 +47,19 @@ class MainActivity : AppCompatActivity() {
     //sign_out.setOnClickListener(this)
   }
 
-//FYP JIRA TEST 2
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
     // Inflate the menu; this adds items to the action bar if it is present.
     menuInflater.inflate(R.menu.main, menu)
     return true
   }
 
-  /*
-  override fun onNavigationItemSelected(item: MenuItem): Boolean {
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
     when (item.itemId) {
-
-      R.id.sign_out ->
-        signOut()
-
-      else -> toast("You Selected Something Else")
+      R.id.action_signout -> signOut()
     }
-    //drawerLayout.closeDrawer(GravityCompat.START)
-    return true
+    return super.onOptionsItemSelected(item)
   }
-*/
-
 
   private fun signOut() {
     AuthUI.getInstance()
@@ -76,8 +67,6 @@ class MainActivity : AppCompatActivity() {
       .addOnCompleteListener { startActivity<LoginActivity>() }
     finish()
   }
-
-
 
   override fun onSupportNavigateUp(): Boolean {
     val navController = findNavController(R.id.nav_host_fragment)

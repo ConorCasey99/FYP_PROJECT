@@ -19,11 +19,14 @@ import ie.conorcasey.sharido.main.MainApp
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import org.jetbrains.anko.startActivity
 
+
 class MainActivity : AppCompatActivity() {
 
   private lateinit var appBarConfiguration: AppBarConfiguration
   private lateinit var Auth: FirebaseAuth
   lateinit var app: MainApp
+  var user = FirebaseAuth.getInstance().currentUser
+
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -39,13 +42,16 @@ class MainActivity : AppCompatActivity() {
     // Passing each menu ID as a set of Ids because each
     // menu should be considered as top level destinations.
     appBarConfiguration = AppBarConfiguration(setOf(
-        R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow), drawerLayout)
+        R.id.nav_home, R.id.nav_users, R.id.nav_slideshow), drawerLayout)
     setupActionBarWithNavController(navController, appBarConfiguration)
     navView.setupWithNavController(navController)
     navView.getHeaderView(0).nav_header.text = app.currentUser?.displayName
     navView.getHeaderView(0).nav_email.text = app.currentUser?.email
+   // navView.getHeaderView(0).imageView.imageURI = app.currentUser?.photoUrl
     //sign_out.setOnClickListener(this)
+
   }
+
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
     // Inflate the menu; this adds items to the action bar if it is present.

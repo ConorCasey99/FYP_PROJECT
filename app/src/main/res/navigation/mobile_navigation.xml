@@ -12,15 +12,15 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_users"
         android:name="ie.conorcasey.sharido.ui.communities.CommunitiesFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_users"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="ie.conorcasey.sharido.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/menu_communities"
         tools:layout="@layout/fragment_slideshow" />
 
 </navigation>

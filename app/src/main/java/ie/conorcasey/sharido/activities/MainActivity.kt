@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
 
   override fun onCreate(savedInstanceState: Bundle?) {
+
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
     val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -38,17 +39,15 @@ class MainActivity : AppCompatActivity() {
     val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
     val navView: NavigationView = findViewById(R.id.nav_view)
     val navController = findNavController(R.id.nav_host_fragment)
-    // val nav_header = findViewById(R.id.nav_header)
-    // Passing each menu ID as a set of Ids because each
-    // menu should be considered as top level destinations.
+
+
     appBarConfiguration = AppBarConfiguration(setOf(
-        R.id.nav_home, R.id.nav_users, R.id.nav_slideshow), drawerLayout)
+        R.id.nav_home, R.id.nav_users, R.id.nav_create_community), drawerLayout)
     setupActionBarWithNavController(navController, appBarConfiguration)
     navView.setupWithNavController(navController)
     navView.getHeaderView(0).nav_header.text = app.currentUser?.displayName
     navView.getHeaderView(0).nav_email.text = app.currentUser?.email
-   // navView.getHeaderView(0).imageView.imageURI = app.currentUser?.photoUrl
-    //sign_out.setOnClickListener(this)
+
 
   }
 

@@ -13,14 +13,20 @@
 
     <fragment
         android:id="@+id/nav_users"
-        android:name="ie.conorcasey.sharido.ui.communities.CommunitiesFragment"
+        android:name="ie.conorcasey.sharido.ui.users.UsersFragment"
         android:label="@string/menu_users"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_users" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="ie.conorcasey.sharido.ui.slideshow.SlideshowFragment"
+        android:id="@+id/nav_create_community"
+        android:name="ie.conorcasey.sharido.ui.CreateCommunity.CreateCommunity"
+        android:label="@string/menu_create_communities"
+        tools:layout="@layout/fragment_create_community" />
+
+    <fragment
+        android:id="@+id/nav_communities"
+        android:name="ie.conorcasey.sharido.ui.communities.Communities"
         android:label="@string/menu_communities"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_communities" />
 
 </navigation>

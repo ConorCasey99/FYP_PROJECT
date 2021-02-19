@@ -13,7 +13,11 @@
             android:icon="@drawable/ic_users"
             android:title="@string/menu_users" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_create_community"
+            android:icon="@drawable/ic_create_community"
+            android:title="@string/menu_create_communities" />
+        <item
+            android:id="@+id/nav_communities"
             android:icon="@drawable/ic_communities"
             android:title="@string/menu_communities" />
         <item

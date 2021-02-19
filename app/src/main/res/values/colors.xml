@@ -14,4 +14,6 @@
     <color name="grey_100">#E8E8E8</color>
     <color name="grey_200">#D8D8D8</color>
     <color name="grey_700">#79848E</color>
+
+    <color name="night_text">#FFFFFFFF</color>
 </resources>

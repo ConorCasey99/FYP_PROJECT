@@ -15,11 +15,10 @@ import ie.conorcasey.sharido.R
 import ie.conorcasey.sharido.main.MainApp
 import org.jetbrains.anko.startActivity
 
-
+//Login functionality based on code from mobile application development 2 module
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var app: MainApp
-    lateinit var auth: FirebaseAuth
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,74 +27,69 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         checkSignedIn()
     }
 
-    private fun checkSignedIn() {
-        val auth = FirebaseAuth.getInstance()
-        if (auth.currentUser != null) {
+    private fun checkSignedIn() {                                         //function adapted from code from Mobile Application Development 2 module labs
+        val auth = FirebaseAuth.getInstance()                             //function adapted from code from Mobile Application Development 2 module labs
+        if (auth.currentUser != null) {                                   //function adapted from code from Mobile Application Development 2 module labs
             // already signed in
-            app.currentUser = FirebaseAuth.getInstance().currentUser!!
-            app.database = FirebaseDatabase.getInstance().reference
-            app.storage = FirebaseStorage.getInstance().reference
-            startActivity<MainActivity>()
+            app.currentUser = FirebaseAuth.getInstance().currentUser!!    //function adapted from code from Mobile Application Development 2 module labs
+            app.database = FirebaseDatabase.getInstance().reference       //function adapted from code from Mobile Application Development 2 module labs
+            app.storage = FirebaseStorage.getInstance().reference         //function adapted from code from Mobile Application Development 2 module labs
+            startActivity<MainActivity>()                                 //function adapted from code from Mobile Application Development 2 module labs
         }
         else
         // if not signed in
-            createSignInIntent()
+            createSignInIntent()                                           //function adapted from code from Mobile Application Development 2 module labs
     }
 
     private fun createSignInIntent() {
         // [START auth_fui_create_intent]
         // Choose authentication providers
-        val providers = arrayListOf(
-            AuthUI.IdpConfig.EmailBuilder().build(),
-            AuthUI.IdpConfig.PhoneBuilder().build(),
-            AuthUI.IdpConfig.GoogleBuilder().build())
+        val providers = arrayListOf(                                      //function adapted from code from Mobile Application Development 2 module labs
+            AuthUI.IdpConfig.EmailBuilder().build(),                      //function adapted from code from Mobile Application Development 2 module labs
+            AuthUI.IdpConfig.PhoneBuilder().build(),                      //function adapted from code from Mobile Application Development 2 module labs
+            AuthUI.IdpConfig.GoogleBuilder().build())                     //function adapted from code from Mobile Application Development 2 module labs
 
-        val customLayout = AuthMethodPickerLayout
-            .Builder(R.layout.login)
-            .setGoogleButtonId(R.id.googleSignInButton)
-            .setEmailButtonId(R.id.emailSignInButton)
-            .setPhoneButtonId(R.id.phoneSignInButton)
-            .build()
+        val customLayout = AuthMethodPickerLayout                          //function adapted from code from Mobile Application Development 2 module labs
+            .Builder(R.layout.login)                                       //function adapted from code from Mobile Application Development 2 module labs
+            .setGoogleButtonId(R.id.googleSignInButton)                    //function adapted from code from Mobile Application Development 2 module labs
+            .setEmailButtonId(R.id.emailSignInButton)                      //function adapted from code from Mobile Application Development 2 module labs
+            .setPhoneButtonId(R.id.phoneSignInButton)                      //function adapted from code from Mobile Application Development 2 module labs
+            .build()                                                       //function adapted from code from Mobile Application Development 2 module labs
 
         // Create and launch sign-in intent
-        startActivityForResult(
-            AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
+        startActivityForResult(                                            //function adapted from code from Mobile Application Development 2 module labs
+            AuthUI.getInstance()                                           //function adapted from code from Mobile Application Development 2 module labs
+                .createSignInIntentBuilder()                               //function adapted from code from Mobile Application Development 2 module labs
+                .setAvailableProviders(providers)                          //function adapted from code from Mobile Application Development 2 module labs
                 .setIsSmartLockEnabled(false,true) // true,true for Smart Lock
-                .setTheme(R.style.FirebaseLoginTheme)
-                .setAuthMethodPickerLayout(customLayout)
-                .build(),
+                .setTheme(R.style.FirebaseLoginTheme)                      //function adapted from code from Mobile Application Development 2 module labs
+                .setAuthMethodPickerLayout(customLayout)                   //function adapted from code from Mobile Application Development 2 module labs
+                .build(),                                                  //function adapted from code from Mobile Application Development 2 module labs
             123)
         // [END auth_fui_create_intent]
 
     }
 
     // [START auth_fui_result]
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {  //function adapted from code from Mobile Application Development 2 module labs
+        super.onActivityResult(requestCode, resultCode, data)                          //function adapted from code from Mobile Application Development 2 module labs
 
-        if (requestCode == 123) {
-            val response = IdpResponse.fromResultIntent(data)
+        if (requestCode == 123) {                                                      //function adapted from code from Mobile Application Development 2 module labs
+            val response = IdpResponse.fromResultIntent(data)                          //function adapted from code from Mobile Application Development 2 module labs
 
-            if (resultCode == Activity.RESULT_OK) {
+            if (resultCode == Activity.RESULT_OK) {                                    //function adapted from code from Mobile Application Development 2 module labs
                 // Successfully signed in
-                app.currentUser = FirebaseAuth.getInstance().currentUser!!
-                app.database = FirebaseDatabase.getInstance().reference
-                app.storage = FirebaseStorage.getInstance().reference
+                app.currentUser = FirebaseAuth.getInstance().currentUser!!             //function adapted from code from Mobile Application Development 2 module labs
+                app.database = FirebaseDatabase.getInstance().reference                //function adapted from code from Mobile Application Development 2 module labs
+                app.storage = FirebaseStorage.getInstance().reference                  //function adapted from code from Mobile Application Development 2 module labs
 
-                startActivity<MainActivity>()
-                // ...
+                startActivity<MainActivity>()                                          //function adapted from code from Mobile Application Development 2 module labs
+
             } else {
-                // Sign in failed. If response is null the user canceled the
-                // sign-in flow using the back button. Otherwise check
-                // response.getError().getErrorCode() and handle the error.
-                // ...
-                startActivity<LoginActivity>()
+                startActivity<LoginActivity>()                                         //function adapted from code from Mobile Application Development 2 module labs
             }
         }
     }
-    // [END auth_fui_result]
 
-    override fun onClick(v: View) { createSignInIntent() }
+    override fun onClick(v: View) { createSignInIntent() }//function adapted from code from Mobile Application Development 2 module labs
 }

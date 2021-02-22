@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import ie.conorcasey.sharido.R
 import ie.conorcasey.sharido.main.MainApp
 import kotlinx.android.synthetic.main.nav_header_main.view.*
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
   private lateinit var appBarConfiguration: AppBarConfiguration
   private lateinit var Auth: FirebaseAuth
   lateinit var app: MainApp
-  var user = FirebaseAuth.getInstance().currentUser
+  var database = FirebaseDatabase.getInstance().reference
 
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,10 +46,8 @@ class MainActivity : AppCompatActivity() {
         R.id.nav_home, R.id.nav_users, R.id.nav_create_community), drawerLayout)
     setupActionBarWithNavController(navController, appBarConfiguration)
     navView.setupWithNavController(navController)
-    navView.getHeaderView(0).nav_header.text = app.currentUser?.displayName
-    navView.getHeaderView(0).nav_email.text = app.currentUser?.email
-
-
+    navView.getHeaderView(0).nav_header.text = app.currentUser.displayName
+    navView.getHeaderView(0).nav_email.text = app.currentUser.email
   }
 
 
@@ -77,4 +76,6 @@ class MainActivity : AppCompatActivity() {
     val navController = findNavController(R.id.nav_host_fragment)
     return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
   }
+
+
 }

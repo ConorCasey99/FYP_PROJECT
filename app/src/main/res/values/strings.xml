@@ -21,4 +21,27 @@
     <string name="sign_in_phone">Sign In with Phone</string>
 
     <string name="create_community"> Create Community </string>
+
+    <string name="messageLoading"> Loading </string>
+
+
+    <string name="community_spinner_text"> Choose a Category </string>
+
+    <string-array name="categories">
+        <item>Art</item>
+        <item>Automobiles</item>
+        <item>Baking</item>
+        <item>Books</item>
+        <item>Cooking</item>
+        <item>Cosplaying</item>
+        <item>Crafts</item>
+        <item>Driving</item>
+        <item>Fashion</item>
+        <item>Film</item>
+        <item>Gaming</item>
+        <item>General Advice</item>
+        <item>Graphic Design</item>
+        <item>Hacking</item>
+        <item>Motorcycles</item>
+    </string-array>
 </resources>

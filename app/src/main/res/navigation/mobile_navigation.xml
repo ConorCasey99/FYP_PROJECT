@@ -19,13 +19,13 @@
 
     <fragment
         android:id="@+id/nav_create_community"
-        android:name="ie.conorcasey.sharido.ui.CreateCommunity.CreateCommunity"
+        android:name="ie.conorcasey.sharido.ui.CreateCommunity.CreateCommunityFragment"
         android:label="@string/menu_create_communities"
         tools:layout="@layout/fragment_create_community" />
 
     <fragment
         android:id="@+id/nav_communities"
-        android:name="ie.conorcasey.sharido.ui.communities.Communities"
+        android:name="ie.conorcasey.sharido.ui.communities.CommunitiesFragment"
         android:label="@string/menu_communities"
         tools:layout="@layout/fragment_communities" />
 

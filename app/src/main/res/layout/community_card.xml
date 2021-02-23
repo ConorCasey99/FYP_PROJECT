@@ -31,6 +31,8 @@
             android:layout_width="212dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="94dp"
             android:layout_toEndOf="@id/imageview_community_picture"
             android:textColor="@color/black" />
 
@@ -38,6 +40,10 @@
             android:id="@+id/communityCategory"
             android:layout_width="212dp"
             android:layout_height="wrap_content"
+            android:layout_below="@id/communityName"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="80dp"
             android:layout_toEndOf="@id/imageview_community_picture"
             android:textColor="@color/black" />
 

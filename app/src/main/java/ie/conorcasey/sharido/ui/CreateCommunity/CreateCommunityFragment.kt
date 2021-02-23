@@ -6,14 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ie.conorcasey.sharido.R
 import ie.conorcasey.sharido.main.MainApp
 import ie.conorcasey.sharido.models.CommunityModel
-import kotlinx.android.synthetic.main.fragment_create_community.*
 import kotlinx.android.synthetic.main.fragment_create_community.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -34,7 +32,8 @@ class CreateCommunityFragment : Fragment(), AnkoLogger {
     app = activity?.application as MainApp
 
      //Spinner onItemSelectedListener listener
-     spCategories.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+     /*
+       spCategories.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
        override fun onNothingSelected(p0: AdapterView<*>?) { //not too important as an item will always be selected
 
        }
@@ -43,7 +42,7 @@ class CreateCommunityFragment : Fragment(), AnkoLogger {
                    (adapterView?.getItemAtPosition(position))
 
        }
-     }
+     }*/
    }
 
 
@@ -60,7 +59,7 @@ class CreateCommunityFragment : Fragment(), AnkoLogger {
 
       setButtonListener(root)
       //setFavouriteListener(root)
-    return root
+     return root
   }
 
   companion object {
@@ -92,7 +91,7 @@ class CreateCommunityFragment : Fragment(), AnkoLogger {
 
       val communityNameVal= layout.communityName.text.toString()
       val communityDescriptionVal = layout.communityDescription.text.toString()
-      val communityCategoryVal = spCategories
+     // val communityCategoryVal = spCategories
 
 
       if(community.communityName.isEmpty())

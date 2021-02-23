@@ -12,6 +12,8 @@
     <string name="menu_create_communities">Create Community</string>
     <string name="menu_communities">Communities</string>
     <string name="menu_sign_out">Sign Out</string>
+    <string name="menu_yourCommunities">Your Communities</string>
+
 
 
     <string name="desc_firebase_lockup">Firebase logo and name</string>

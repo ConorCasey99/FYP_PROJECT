@@ -28,5 +28,10 @@
         android:name="ie.conorcasey.sharido.ui.communities.CommunitiesFragment"
         android:label="@string/menu_communities"
         tools:layout="@layout/fragment_communities" />
+    <fragment
+        android:id="@+id/nav_yourCommunities"
+        android:name="ie.conorcasey.sharido.ui.YourCommunities.YourCommunitiesFragment"
+        android:label="@string/menu_yourCommunities"
+        tools:layout="@layout/fragment_communities" />
 
 </navigation>

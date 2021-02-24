@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ie.conorcasey.sharido.R
 import ie.conorcasey.sharido.models.CommunityModel
+import ie.conorcasey.sharido.models.PostModel
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.community_card.view.*
 
@@ -17,10 +18,11 @@ interface CommunityListener {
 }
 
 class CommunityAdapter constructor(private var communities: ArrayList<CommunityModel>,
-                                 private val listener: CommunityListener, reportall: Boolean)
+                                   private val listener: CommunityListener, reportall: Boolean)
   : RecyclerView.Adapter<CommunityAdapter.MainHolder>() {
 
   val reportAll = reportall
+  val arrayList = ArrayList<PostModel>()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
     return MainHolder(
@@ -39,10 +41,10 @@ class CommunityAdapter constructor(private var communities: ArrayList<CommunityM
 
   override fun getItemCount(): Int = communities.size
 
-    fun removeAt(position: Int){
+  fun removeAt(position: Int){
         communities.removeAt(position)
         notifyItemRemoved(position)
-    }
+  }
 
 
   class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -65,5 +67,6 @@ class CommunityAdapter constructor(private var communities: ArrayList<CommunityM
         itemView.imageview_community_picture.setImageResource(R.mipmap.ic_launcher)
 
     }
+
   }
 }

@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
   lateinit var app: MainApp
   var database = FirebaseDatabase.getInstance().reference
 
-
   override fun onCreate(savedInstanceState: Bundle?) {
 
     super.onCreate(savedInstanceState)
@@ -41,7 +40,6 @@ class MainActivity : AppCompatActivity() {
     val navView: NavigationView = findViewById(R.id.nav_view)
     val navController = findNavController(R.id.nav_host_fragment)
 
-
     appBarConfiguration = AppBarConfiguration(setOf(
         R.id.nav_home, R.id.nav_users, R.id.nav_create_community), drawerLayout)
     setupActionBarWithNavController(navController, appBarConfiguration)
@@ -49,8 +47,7 @@ class MainActivity : AppCompatActivity() {
     navView.getHeaderView(0).nav_header.text = app.currentUser.displayName
     navView.getHeaderView(0).nav_email.text = app.currentUser.email
   }
-
-
+  
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
     // Inflate the menu; this adds items to the action bar if it is present.
     menuInflater.inflate(R.menu.main, menu)

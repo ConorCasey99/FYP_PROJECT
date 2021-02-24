@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import ie.conorcasey.sharido.R
 import ie.conorcasey.sharido.main.MainApp
 import ie.conorcasey.sharido.models.CommunityModel
@@ -51,9 +50,7 @@ class CreateCommunityFragment : Fragment(), AnkoLogger {
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-
-    createCommunityViewModel = ViewModelProvider(this).get(CreateCommunityViewModel::class.java)
-    val root = inflater.inflate(R.layout.fragment_create_community, container, false)
+      val root = inflater.inflate(R.layout.fragment_create_community, container, false)
 
 
 

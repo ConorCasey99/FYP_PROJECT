@@ -1,8 +1,5 @@
 package ie.conorcasey.sharido.ui.communities
 
-//import ie.conorcasey.sharido.helpers.createLoader
-//import ie.conorcasey.sharido.helpers.hideLoader
-//import ie.conorcasey.sharido.helpers.showLoader
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -40,11 +37,7 @@ class CommunitiesFragment : Fragment(), AnkoLogger{
    // setSwipeRefresh()
     root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
     return root
-
   }
-
-
-
   }
 
 

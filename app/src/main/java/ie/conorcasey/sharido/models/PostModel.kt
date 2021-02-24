@@ -10,7 +10,8 @@ data class PostModel(var uid: String = "",
                           var postContent: String = "N/A",
                           var followed: Boolean = false,
                           var email: String? = "joe@bloggs.com",
-                          var community: String = "N/A"
+                          var community: String = "N/A",
+                          var postPic: String = ""
                               ) : Parcelable {
 
   @Exclude
@@ -21,7 +22,8 @@ data class PostModel(var uid: String = "",
         "postContent" to postContent,
         "followed" to followed,
         "email" to email,
-        "community" to community
+        "community" to community,
+        "postPic" to postPic
     )
   }
 }

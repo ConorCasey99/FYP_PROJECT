@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -33,27 +33,25 @@ class YourCommunitiesFragment : Fragment(), AnkoLogger, CommunityListener {
 
   private lateinit var yourCommunitiesViewModel: YourCommunitiesViewModel
 
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    app = activity?.application as MainApp
+  }
+
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    yourCommunitiesViewModel =
-        ViewModelProvider(this).get(YourCommunitiesViewModel::class.java)
     val root = inflater.inflate(R.layout.fragment_communities, container, false)
     //val textView: TextView = root.findViewById(R.id.titleText)
     // slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
     //  textView.text = it
     //})
-//    root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
+     root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
     // setSwipeRefresh()
     //root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
     return root
-  }
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    app = activity?.application as MainApp
   }
 
   open fun setSwipeRefresh() {
@@ -93,7 +91,7 @@ class YourCommunitiesFragment : Fragment(), AnkoLogger, CommunityListener {
   fun getAllUserCommunities(userId: String?) {
     loader = createLoader(requireActivity())
     showLoader(loader, "Downloading your communities from Firebase")
-    val communitiesList = ArrayList<CommunityModel>()
+    val communitiesList = ArrayList<CommunityModel>() //Create an array list of community model assigned to the variable communitiesList
     app.database.child("user-communities").child(userId!!)
         .addValueEventListener(object : ValueEventListener {
           override fun onCancelled(error: DatabaseError) {

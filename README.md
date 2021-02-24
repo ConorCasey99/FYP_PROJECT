@@ -1,6 +1,6 @@
 # FYP_PROJECT
 
-## Key Features Thus Far
+## Planned Key Features Thus Far
 
 * Ability for users to register and login using google authentication.
 * Ability for users to post a new community focused on their interests.

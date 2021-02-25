@@ -1,4 +1,4 @@
-package ie.conorcasey.sharido.ui.YourCommunities
+package ie.conorcasey.sharido.ui.yourCommunities
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,7 +19,6 @@ import ie.conorcasey.sharido.helpers.hideLoader
 import ie.conorcasey.sharido.helpers.showLoader
 import ie.conorcasey.sharido.main.MainApp
 import ie.conorcasey.sharido.models.CommunityModel
-import ie.conorcasey.sharido.ui.communities.CommunitiesFragment
 import kotlinx.android.synthetic.main.fragment_communities.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -31,8 +30,6 @@ class YourCommunitiesFragment : Fragment(), AnkoLogger, CommunityListener {
   lateinit var loader : AlertDialog
   lateinit var root: View
 
-  private lateinit var yourCommunitiesViewModel: YourCommunitiesViewModel
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     app = activity?.application as MainApp
@@ -43,15 +40,42 @@ class YourCommunitiesFragment : Fragment(), AnkoLogger, CommunityListener {
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    val root = inflater.inflate(R.layout.fragment_communities, container, false)
-    //val textView: TextView = root.findViewById(R.id.titleText)
-    // slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
-    //  textView.text = it
-    //})
-     root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
-    // setSwipeRefresh()
-    //root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
+    root = inflater.inflate(R.layout.fragment_communities, container, false)
+    root.communitiesRecyclerView.setLayoutManager(LinearLayoutManager(activity))
+    setSwipeRefresh()
+   // recyclerView = root?.findViewById(R.id.recyclerView)
+    // rest of my stuff
+    //?.setHasFixedSize(true)
+   // recyclerView?.layoutManager = viewManager
+   // recyclerView?.adapter = CommunityAdapter
+
     return root
+  }
+
+  fun deleteUserCommunity(userId: String, uid: String?) {
+    app.database.child("user-communities").child(userId).child(uid!!)
+        .addListenerForSingleValueEvent(
+            object : ValueEventListener {
+              override fun onDataChange(snapshot: DataSnapshot) {
+                snapshot.ref.removeValue()
+              }
+              override fun onCancelled(error: DatabaseError) {
+                info("Firebase Community error : ${error.message}")
+              }
+            })
+  }
+
+  fun deleteCommunity(uid: String?) {
+    app.database.child("communties").child(uid!!)
+        .addListenerForSingleValueEvent(
+            object : ValueEventListener {
+              override fun onDataChange(snapshot: DataSnapshot) {
+                snapshot.ref.removeValue()
+              }
+              override fun onCancelled(error: DatabaseError) {
+                info("Firebase Community error : ${error.message}")
+              }
+            })
   }
 
   open fun setSwipeRefresh() {
@@ -76,14 +100,14 @@ class YourCommunitiesFragment : Fragment(), AnkoLogger, CommunityListener {
 
   override fun onResume() {
     super.onResume()
-    if(this::class == CommunitiesFragment::class)
+    if(this::class == YourCommunitiesFragment::class)
       getAllUserCommunities(app.currentUser!!.uid)
   }
 
   companion object {
     @JvmStatic
     fun newInstance() =
-        CommunitiesFragment().apply {
+        YourCommunitiesFragment().apply {
           arguments = Bundle().apply { }
         }
   }
@@ -98,7 +122,7 @@ class YourCommunitiesFragment : Fragment(), AnkoLogger, CommunityListener {
             info("Firebase Routine error : ${error.message}")
           }
 
-          override fun onDataChange(snapshot: DataSnapshot) {
+          override fun onDataChange(snapshot: DataSnapshot) {//triggered by data change
             hideLoader(loader)
             val children = snapshot.children
             children.forEach {
@@ -106,9 +130,9 @@ class YourCommunitiesFragment : Fragment(), AnkoLogger, CommunityListener {
               getValue<CommunityModel>(CommunityModel::class.java)
 
               communitiesList.add(community!!)
-              root.recyclerView.adapter =
+              root.communitiesRecyclerView.adapter =
                   CommunityAdapter(communitiesList, this@YourCommunitiesFragment, reportall = false)
-              root.recyclerView.adapter?.notifyDataSetChanged()
+              root.communitiesRecyclerView.adapter?.notifyDataSetChanged()
               checkSwipeRefresh()
 
               app.database.child("user-communities").child(userId)

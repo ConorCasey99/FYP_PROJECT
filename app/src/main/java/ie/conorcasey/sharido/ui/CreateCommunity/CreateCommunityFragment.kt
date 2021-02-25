@@ -19,8 +19,6 @@ import java.util.*
 
 class CreateCommunityFragment : Fragment(), AnkoLogger {
 
-  private lateinit var createCommunityViewModel: CreateCommunityViewModel
-
     lateinit var app: MainApp
     lateinit var loader : AlertDialog
     var community = CommunityModel()
@@ -98,30 +96,36 @@ class CreateCommunityFragment : Fragment(), AnkoLogger {
       }else{
         createNewCommunity(CommunityModel(
             communityName = communityNameVal,
-            communityDescription = communityDescriptionVal,
+            communityDescription = communityDescriptionVal
           //  communityCategory = communityCategoryVal,
            // communityPic = app.userImage.toString(),
            // followed = following,
-            email = app.currentUser.email))
+            ))
       }
     }
   }
 
-  fun createNewCommunity(community: CommunityModel) {               //function adapted from code from Mobile Application Development 2 module labs
+  fun createNewCommunity(community: CommunityModel /*post: PostModel*/) {               //function adapted from code from Mobile Application Development 2 module labs
     // Create new routine at /community & /community/$uid
     //showLoader(loader, "Adding Community to Firebase")
     info("Firebase DB Reference : ${app.database}")        //function adapted from code from Mobile Application Development 2 module labs
-    val uid = app.currentUser!!.uid                                 //function adapted from code from Mobile Application Development 2 module labs
-    val key = app.database.child("communites").push().key //function adapted from code from Mobile Application Development 2 module labs
+    val uid = app.currentUser!!.uid //function adapted from code from Mobile Application Development 2 module labs
+    val key = app.database.child("communites").push().key
+   // val pkey = app.database.child("communites/posts").push().key //function adapted from code from Mobile Application Development 2 module labs
+                                                                    //function adapted from code from Mobile Application Development 2 module labs
     if (key == null) {                                              //function adapted from code from Mobile Application Development 2 module labs
       info("Firebase Error : Key Empty")                   //function adapted from code from Mobile Application Development 2 module labs
       return                                                        //function adapted from code from Mobile Application Development 2 module labs
     }
-    community.uid = key                                             //function adapted from code from Mobile Application Development 2 module labs
-    val communityValues = community.toMap()                         //function adapted from code from Mobile Application Development 2 module labs
 
+    community.uid = key
+   // post.uid = pkey.toString()                                                 //function adapted from code from Mobile Application Development 2 module labs
+    val communityValues = community.toMap()
+    //val postValues = post.toMap()                                    //function adapted from code from Mobile Application Development 2 module labs
+                                                                     //function adapted from code from Mobile Application Development 2 module labs
     val childUpdates = HashMap<String, Any>()                        //function adapted from code from Mobile Application Development 2 module labs
     childUpdates["/communities/$key"] = communityValues               //function adapted from code from Mobile Application Development 2 module labs
+    //childUpdates["/communities/$key/$pkey"] = postValues               //function adapted from code from Mobile Application Development 2 module labs
     childUpdates["/user-communities/$uid/$key"] = communityValues     //function adapted from code from Mobile Application Development 2 module labs
 
     app.database.updateChildren(childUpdates)                         //function adapted from code from Mobile Application Development 2 module labs

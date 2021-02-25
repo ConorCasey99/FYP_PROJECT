@@ -6,9 +6,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class PostModel(var uid: String = "",
+                          var userName: String = "",
                           var postTitle: String = "N/A",
                           var postContent: String = "N/A",
-                          var followed: Boolean = false,
                           var email: String? = "joe@bloggs.com",
                           var community: String = "N/A",
                           var postPic: String = ""
@@ -20,7 +20,6 @@ data class PostModel(var uid: String = "",
         "uid" to uid,
         "postTitle" to postTitle,
         "postContent" to postContent,
-        "followed" to followed,
         "email" to email,
         "community" to community,
         "postPic" to postPic

@@ -10,8 +10,7 @@ data class CommunityModel(var uid: String = "",
                           var communityDescription: String = "N/A",
                           var communityCategory: String = "N/A",
                           var communityPic: String = "",
-                          var followed: Boolean = false,
-                          var email: String? = "joe@bloggs.com"
+                          var followed: Boolean = false
                           ) : Parcelable {
 
   @Exclude
@@ -22,8 +21,6 @@ data class CommunityModel(var uid: String = "",
         "communityDescription" to communityDescription,
         "communityCategory" to communityCategory,
         "communityPic" to communityPic,
-        "followed" to followed,
-        "email" to email
-    )
+        "followed" to followed)
   }
 }

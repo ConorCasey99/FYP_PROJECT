@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ie.conorcasey.sharido.R
 import ie.conorcasey.sharido.main.MainApp
@@ -19,15 +18,12 @@ class CommunitiesFragment : Fragment(), AnkoLogger{
     lateinit var loader : AlertDialog
     lateinit var root: View
 
-  private lateinit var communitiesViewModel: CommunitiesViewModel
 
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    communitiesViewModel =
-        ViewModelProvider(this).get(CommunitiesViewModel::class.java)
     val root = inflater.inflate(R.layout.fragment_communities, container, false)
     //val textView: TextView = root.findViewById(R.id.titleText)
     // slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
@@ -35,7 +31,7 @@ class CommunitiesFragment : Fragment(), AnkoLogger{
     //})
 //    root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
    // setSwipeRefresh()
-    root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
+    root.communitiesRecyclerView.setLayoutManager(LinearLayoutManager(activity))
     return root
   }
   }

@@ -52,6 +52,7 @@ class CommunityAdapter constructor(private var communities: ArrayList<CommunityM
     fun bind(community: CommunityModel,  listener : CommunityListener, reportAll: Boolean) {
       itemView.tag = community
       itemView.communityName.text = community.communityName
+
       itemView.communityCategory.text = community.communityCategory
 
       if(!reportAll)

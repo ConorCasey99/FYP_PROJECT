@@ -2,6 +2,7 @@ package ie.conorcasey.sharido.ui.CreateCommunity
 
 //import ie.conorcasey.sharido.helpers.hideLoader
 //import ie.conorcasey.sharido.helpers.showLoader
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +12,13 @@ import androidx.fragment.app.Fragment
 import ie.conorcasey.sharido.R
 import ie.conorcasey.sharido.main.MainApp
 import ie.conorcasey.sharido.models.CommunityModel
+import kotlinx.android.synthetic.main.fragment_create_community.*
 import kotlinx.android.synthetic.main.fragment_create_community.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.toast
 import java.util.*
+
 
 class CreateCommunityFragment : Fragment(), AnkoLogger {
 
@@ -24,22 +27,10 @@ class CreateCommunityFragment : Fragment(), AnkoLogger {
     var community = CommunityModel()
     var followed = false
 
+
    override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     app = activity?.application as MainApp
-
-     //Spinner onItemSelectedListener listener
-     /*
-       spCategories.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-       override fun onNothingSelected(p0: AdapterView<*>?) { //not too important as an item will always be selected
-
-       }
-
-       override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                   (adapterView?.getItemAtPosition(position))
-
-       }
-     }*/
    }
 
 
@@ -53,7 +44,7 @@ class CreateCommunityFragment : Fragment(), AnkoLogger {
 
 
       setButtonListener(root)
-      //setFavouriteListener(root)
+      //setFollowedListener(root)
      return root
   }
 
@@ -80,13 +71,15 @@ class CreateCommunityFragment : Fragment(), AnkoLogger {
     })
   }*/
 
+
+
   fun setButtonListener(layout: View){                                           //function adapted from code from Mobile Application Development 2 module labs
 
     layout.create_community_button.setOnClickListener{                           //function adapted from code from Mobile Application Development 2 module labs
 
       val communityNameVal= layout.communityName.text.toString()
       val communityDescriptionVal = layout.communityDescription.text.toString()
-     // val communityCategoryVal = spCategories
+      val communityCategoryVal =  spCategories.selectedItem.toString()
 
 
       if(community.communityName.isEmpty())
@@ -96,8 +89,8 @@ class CreateCommunityFragment : Fragment(), AnkoLogger {
       }else{
         createNewCommunity(CommunityModel(
             communityName = communityNameVal,
-            communityDescription = communityDescriptionVal
-          //  communityCategory = communityCategoryVal,
+            communityDescription = communityDescriptionVal,
+            communityCategory = communityCategoryVal
            // communityPic = app.userImage.toString(),
            // followed = following,
             ))
@@ -119,13 +112,13 @@ class CreateCommunityFragment : Fragment(), AnkoLogger {
     }
 
     community.uid = key
-   // post.uid = pkey.toString()                                                 //function adapted from code from Mobile Application Development 2 module labs
+   // post.uid = pkey.toString()                                     //function adapted from code from Mobile Application Development 2 module labs
     val communityValues = community.toMap()
-    //val postValues = post.toMap()                                    //function adapted from code from Mobile Application Development 2 module labs
+    //val postValues = post.toMap()                                  //function adapted from code from Mobile Application Development 2 module labs
                                                                      //function adapted from code from Mobile Application Development 2 module labs
     val childUpdates = HashMap<String, Any>()                        //function adapted from code from Mobile Application Development 2 module labs
-    childUpdates["/communities/$key"] = communityValues               //function adapted from code from Mobile Application Development 2 module labs
-    //childUpdates["/communities/$key/$pkey"] = postValues               //function adapted from code from Mobile Application Development 2 module labs
+    childUpdates["/communities/$key"] = communityValues              //function adapted from code from Mobile Application Development 2 module labs
+    //childUpdates["/communities/$key/$pkey"] = postValues            //function adapted from code from Mobile Application Development 2 module labs
     childUpdates["/user-communities/$uid/$key"] = communityValues     //function adapted from code from Mobile Application Development 2 module labs
 
     app.database.updateChildren(childUpdates)                         //function adapted from code from Mobile Application Development 2 module labs

@@ -112,6 +112,20 @@ class YourCommunitiesFragment : Fragment(), AnkoLogger, CommunityListener {
         }
   }
 
+  /*
+  fun onChildRemoved(dataSnapshot: DataSnapshot) {
+    val key = dataSnapshot.key
+    if (mKeys.contains(key)) {
+      val index: Int = mKeys.indexOf(key)
+      val item: T = mItems.get(index)
+      mKeys.remove(index)
+      mItems.remove(index)
+      notifyItemRemoved(index)
+      itemRemoved(item, key, index)
+    }
+  }*/
+
+
   fun getAllUserCommunities(userId: String?) {
     loader = createLoader(requireActivity())
     showLoader(loader, "Downloading your communities from Firebase")

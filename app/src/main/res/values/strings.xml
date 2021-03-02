@@ -13,6 +13,7 @@
     <string name="menu_communities">Communities</string>
     <string name="menu_sign_out">Sign Out</string>
     <string name="menu_yourCommunities">Your Communities</string>
+    <string name="menu_community_categories"> Community Categories </string>
 
 
 
@@ -23,7 +24,14 @@
     <string name="sign_in_phone">Sign In with Phone</string>
 
     <string name="create_community"> Create Community </string>
+    <string name="create_post"> Create Post </string>
 
+    <string name="welcome"> Welcome Back </string>
+    <string name="create_post_menu_button"> Create a Post </string>
+    <string name="communities_menu_button"> Communities </string>
+    <string name="your_posts_menu_button"> Your Posts </string>
+    <string name="users_menu_button_text"> Users </string>
+    <string name="all_posts_menu_button_text"> All Posts </string>
     <string name="messageLoading"> Loading </string>
 
 

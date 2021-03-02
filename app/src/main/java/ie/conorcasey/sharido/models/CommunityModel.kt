@@ -5,7 +5,9 @@ import com.google.firebase.database.Exclude
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class CommunityModel(var uid: String = "",
+data class CommunityModel(
+                          var communityId:String = "",
+                          var uid: String = "",
                           var communityName: String = "N/A",
                           var communityDescription: String = "N/A",
                           var communityCategory: String = "N/A",

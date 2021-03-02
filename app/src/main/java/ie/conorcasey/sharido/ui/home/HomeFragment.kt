@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import ie.conorcasey.sharido.R
+import ie.conorcasey.sharido.main.MainApp
 
 class HomeFragment : Fragment() {
 
+  lateinit var app: MainApp
 
   override fun onCreateView(
       inflater: LayoutInflater,
@@ -17,7 +19,7 @@ class HomeFragment : Fragment() {
       savedInstanceState: Bundle?
   ): View? {
     val root = inflater.inflate(R.layout.fragment_home, container, false)
-    val textView: TextView = root.findViewById(R.id.text_home)
-    return root
+    var homeName: TextView = root.findViewById(R.id.homeTitleText)
+      return root
   }
 }

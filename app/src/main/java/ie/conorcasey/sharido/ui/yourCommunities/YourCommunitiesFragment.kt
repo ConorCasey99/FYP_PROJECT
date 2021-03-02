@@ -24,11 +24,12 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
 
-class YourCommunitiesFragment : Fragment(), AnkoLogger, CommunityListener {
+open class YourCommunitiesFragment : Fragment(), AnkoLogger, CommunityListener {
 
   lateinit var app: MainApp
   lateinit var loader : AlertDialog
   lateinit var root: View
+  private val communitiesList: List<CommunityModel> = ArrayList()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -45,7 +46,7 @@ class YourCommunitiesFragment : Fragment(), AnkoLogger, CommunityListener {
     setSwipeRefresh()
    // recyclerView = root?.findViewById(R.id.recyclerView)
     // rest of my stuff
-    //?.setHasFixedSize(true)
+    // ?.setHasFixedSize(true)
    // recyclerView?.layoutManager = viewManager
    // recyclerView?.adapter = CommunityAdapter
 
@@ -66,7 +67,7 @@ class YourCommunitiesFragment : Fragment(), AnkoLogger, CommunityListener {
   }
 
   fun deleteCommunity(uid: String?) {
-    app.database.child("communties").child(uid!!)
+    app.database.child("communities").child(uid!!)
         .addListenerForSingleValueEvent(
             object : ValueEventListener {
               override fun onDataChange(snapshot: DataSnapshot) {
@@ -92,10 +93,8 @@ class YourCommunitiesFragment : Fragment(), AnkoLogger, CommunityListener {
   }
 
   override fun onCommunityClick(community: CommunityModel) {
-    requireActivity().supportFragmentManager.beginTransaction()
-        // .replace(R.id.homeFrame, EditRoutineFragment.newInstance(routine))
-        .addToBackStack(null)
-        .commit()
+    //Toast.makeText(activity, "Position is " + communitiesList.get(position), Toast.LENGTH_SHORT).show()
+   // app.database.get("communities").child("posts")
   }
 
   override fun onResume() {
